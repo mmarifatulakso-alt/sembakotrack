@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // 0. Paksa penggunaan HTTPS saat di Hosting (Render)
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
+
         // 1. Kebijakan Otorisasi (Policy & RBAC Gate Admin)
         Gate::policy(Watchlist::class, WatchlistPolicy::class);
         Gate::define('admin', function (User $user) {
