@@ -17,7 +17,7 @@
 <script>
    window.IS_ADMIN = '{{ auth()->user()->email ?? "" }}' === 'mmarifatulakso@gmail.com';
 </script>
-<h1>Harga Sembako Hari Ini (TEST)</h1>
+<h1>Harga Sembako Hari Ini</h1>
 <p class="muted">
     Data terakhir:
     {{ $terakhir ? \Carbon\Carbon::parse($terakhir)->translatedFormat('d F Y') : 'belum ada data (jalankan php artisan fetch:sembako)' }}
