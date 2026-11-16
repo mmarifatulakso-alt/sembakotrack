@@ -2,6 +2,9 @@
 @section('title', 'Dashboard Harga Sembako')
 
 @section('content')
+<script>
+    window.IS_ADMIN = '{{ auth()->user()->role ?? "" }}' === 'admin';
+</script>
 <h1>Harga Sembako Hari Ini</h1>
 <p class="muted">
     Data terakhir:

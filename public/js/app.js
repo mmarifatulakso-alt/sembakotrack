@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isDashboardTable) {
             const headRow = table.querySelector('thead tr');
-            if (headRow && !headers.includes('AKSI')) {
+            if (!window.IS_ADMIN && headRow && !headRow.innerHTML.includes('AKSI')) {
                 const thAksi = document.createElement('th');
                 thAksi.textContent = 'AKSI';
                 headRow.appendChild(thAksi);
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const bar = document.createElement('div');
                 bar.className = 'table-header-bar';
                 bar.innerHTML = `
-                    <div class="muted">Klik <strong>+ Pantau</strong> untuk menambahkan komoditas ke Watchlist Anda</div>
+                    ${!window.IS_ADMIN ? '<div class="muted">Klik <strong>+ Pantau</strong> untuk menambahkan komoditas ke Watchlist Anda</div>' : ''}
                     <div class="table-search-wrap">
                         ${ICON_SEARCH}
                         <input type="search" id="quickSearchKomoditas" placeholder="Cari komoditas (misal: Beras, Cabai)..." aria-label="Cari komoditas pangan">
