@@ -2,6 +2,18 @@
 @section('title', 'Dashboard Harga Sembako')
 
 @section('content')
+@if(auth()->user()->email === 'mmarifatulakso@gmail.com')
+<style>
+    /* 1. Sembunyikan teks petunjuk "Klik + Pantau..." */
+    .table-header-bar .muted { display: none !important; }
+    
+    /* 2. Sembunyikan judul kolom AKSI (karena dia ada di ujung kanan) */
+    table thead tr th:last-child { display: none !important; }
+    
+    /* 3. Sembunyikan seluruh tombol + Pantau beserta selnya */
+    table tbody tr td.action-cell { display: none !important; }
+</style>
+@endif
 <script>
    window.IS_ADMIN = '{{ auth()->user()->email ?? "" }}' === 'mmarifatulakso@gmail.com';
 </script>

@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (isDashboardTable) {
             const headRow = table.querySelector('thead tr');
-            if (!window.IS_ADMIN && headRow && !headRow.innerHTML.includes('AKSI')) {
+            if (!document.querySelector('.navbar').textContent.includes('Admin') && headRow && !headRow.innerHTML.includes('AKSI')) {
                 const thAksi = document.createElement('th');
                 thAksi.textContent = 'AKSI';
                 headRow.appendChild(thAksi);
