@@ -174,7 +174,7 @@
     &copy; {{ date('Y') }} <strong>SembakoTrack</strong> &mdash; Sistem Pemantauan Harga Pangan Nasional.
 </footer>
 
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}?v={{ time() }}"></script>
 @yield('scripts')
 @stack('scripts')
 </body>

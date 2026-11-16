@@ -3,7 +3,7 @@
 
 @section('content')
 <script>
-    window.IS_ADMIN = '{{ auth()->user()->role ?? "" }}' === 'admin';
+   window.IS_ADMIN = '{{ auth()->user()->email ?? "" }}' === 'mmarifatulakso@gmail.com';
 </script>
 <h1>Harga Sembako Hari Ini</h1>
 <p class="muted">
