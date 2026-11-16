@@ -2,21 +2,23 @@
 @section('title', 'Dashboard Harga Sembako')
 
 @section('content')
-@if(auth()->user()->email === 'mmarifatulakso@gmail.com')
+@if(strtolower(auth()->user()->email ?? '') === 'mmarifatulakso@gmail.com' || (auth()->user()->role ?? '') === 'admin')
 <style>
     /* 1. Sembunyikan teks petunjuk "Klik + Pantau..." */
-    .table-header-bar .muted { display: none !important; }
+    .table-header-bar div:first-child { display: none !important; }
     
-    /* 2. Sembunyikan judul kolom AKSI (karena dia ada di ujung kanan) */
+    /* 2. Sembunyikan judul kolom AKSI di ujung kanan */
     table thead tr th:last-child { display: none !important; }
     
     /* 3. Sembunyikan seluruh tombol + Pantau beserta selnya */
     table tbody tr td.action-cell { display: none !important; }
 </style>
 @endif
+
 <script>
-   window.IS_ADMIN = '{{ auth()->user()->email ?? "" }}' === 'mmarifatulakso@gmail.com';
+    window.IS_ADMIN = '{{ strtolower(auth()->user()->email ?? "") }}' === 'mmarifatulakso@gmail.com' || '{{ auth()->user()->role ?? "" }}' === 'admin';
 </script>
+
 <h1>Harga Sembako Hari Ini</h1>
 <p class="muted">
     Data terakhir:
@@ -38,7 +40,9 @@
                     @if($i->selisih !== null)
                         {{ $i->selisih > 0 ? '+' : '' }}{{ number_format($i->selisih, 0, ',', '.') }}
                         ({{ $i->persen }}%)
-                    @else - @endif
+                    @else
+                        -
+                    @endif
                 </td>
                 <td>
                     <span class="badge badge-{{ $i->status }}">
