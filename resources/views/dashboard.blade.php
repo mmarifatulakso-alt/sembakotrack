@@ -4,13 +4,13 @@
 @section('content')
 @if(strtolower(auth()->user()->email ?? '') === 'mmarifatulakso@gmail.com' || (auth()->user()->role ?? '') === 'admin')
 <style>
-    /* 1. Sembunyikan teks petunjuk "Klik + Pantau..." */
-    .table-header-bar div:first-child { display: none !important; }
+    /* 1. Sembunyikan teks petunjuk tanpa menggeser kotak pencarian di kanannya */
+    .table-header-bar > .muted { visibility: hidden !important; }
     
-    /* 2. Sembunyikan judul kolom AKSI di ujung kanan */
-    table thead tr th:last-child { display: none !important; }
+    /* 2. Sembunyikan hanya kolom ke-5 (AKSI) */
+    table thead tr th:nth-child(5) { display: none !important; }
     
-    /* 3. Sembunyikan seluruh tombol + Pantau beserta selnya */
+    /* 3. Sembunyikan seluruh tombol + Pantau */
     table tbody tr td.action-cell { display: none !important; }
 </style>
 @endif
