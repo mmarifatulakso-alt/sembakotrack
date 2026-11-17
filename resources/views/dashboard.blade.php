@@ -2,23 +2,6 @@
 @section('title', 'Dashboard Harga Sembako')
 
 @section('content')
-<style>
-    /* 1. Sembunyikan teks petunjuk tanpa menggeser kotak pencarian */
-    body.is-admin-view .table-header-bar > .muted { visibility: hidden !important; }
-    
-    /* 2. Sembunyikan judul kolom ke-5 (AKSI) */
-    body.is-admin-view table thead tr th:nth-child(5) { display: none !important; }
-    
-    /* 3. Sembunyikan seluruh tombol + Pantau */
-    body.is-admin-view table tbody tr td.action-cell { display: none !important; }
-</style>
-
-<script>
-    if (document.body.textContent.includes('Panel Admin') || document.querySelector('a[href*="/admin"]')) {
-        document.body.classList.add('is-admin-view');
-    }
-</script>
-
 <h1>Harga Sembako Hari Ini</h1>
 <p class="muted">
     Data terakhir:
@@ -40,9 +23,7 @@
                     @if($i->selisih !== null)
                         {{ $i->selisih > 0 ? '+' : '' }}{{ number_format($i->selisih, 0, ',', '.') }}
                         ({{ $i->persen }}%)
-                    @else
-                        -
-                    @endif
+                    @else - @endif
                 </td>
                 <td>
                     <span class="badge badge-{{ $i->status }}">
