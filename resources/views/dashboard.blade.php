@@ -2,21 +2,21 @@
 @section('title', 'Dashboard Harga Sembako')
 
 @section('content')
-@if(strtolower(auth()->user()->email ?? '') === 'mmarifatulakso@gmail.com' || (auth()->user()->role ?? '') === 'admin')
 <style>
-    /* 1. Sembunyikan teks petunjuk tanpa menggeser kotak pencarian di kanannya */
-    .table-header-bar > .muted { visibility: hidden !important; }
+    /* 1. Sembunyikan teks petunjuk tanpa menggeser kotak pencarian */
+    body.is-admin-view .table-header-bar > .muted { visibility: hidden !important; }
     
-    /* 2. Sembunyikan hanya kolom ke-5 (AKSI) */
-    table thead tr th:nth-child(5) { display: none !important; }
+    /* 2. Sembunyikan judul kolom ke-5 (AKSI) */
+    body.is-admin-view table thead tr th:nth-child(5) { display: none !important; }
     
     /* 3. Sembunyikan seluruh tombol + Pantau */
-    table tbody tr td.action-cell { display: none !important; }
+    body.is-admin-view table tbody tr td.action-cell { display: none !important; }
 </style>
-@endif
 
 <script>
-    window.IS_ADMIN = '{{ strtolower(auth()->user()->email ?? "") }}' === 'mmarifatulakso@gmail.com' || '{{ auth()->user()->role ?? "" }}' === 'admin';
+    if (document.body.textContent.includes('Panel Admin') || document.querySelector('a[href*="/admin"]')) {
+        document.body.classList.add('is-admin-view');
+    }
 </script>
 
 <h1>Harga Sembako Hari Ini</h1>
