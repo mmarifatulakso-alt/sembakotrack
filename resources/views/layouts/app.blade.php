@@ -2,9 +2,9 @@
 <html lang="id">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
     <title>@yield('title', 'SembakoTrack') - SembakoTrack</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ time() }}">
 </head>
 <body>
 <header class="nav-pill-shell">
@@ -92,7 +92,7 @@
                                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
                                 <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
                             </svg>
-                            <span>Notifikasi</span>
+                            <span class="notif-btn-text">Notifikasi</span>
                             @if($notifItems->count() > 0)
                                 <span class="notif-badge" aria-live="polite">{{ $notifItems->count() }}</span>
                             @endif
@@ -177,8 +177,5 @@
 <script src="{{ asset('js/app.js') }}?v={{ time() }}"></script>
 @yield('scripts')
 @stack('scripts')
-</body>
-</html>
-
 </body>
 </html>
