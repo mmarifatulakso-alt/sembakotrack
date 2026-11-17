@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Route;
 
 // ---------- Publik (Belum Login Hanya Bisa Lihat Landing Page) ----------
 Route::get('/', function () {
+    if (auth()->check()) {
+        return redirect()->route('dashboard');
+    }
+
     $cuplikanKomoditas = Komoditas::with('latestRiwayat')->orderBy('nama')->take(6)->get();
     $totalKomoditas    = Komoditas::count();
 
