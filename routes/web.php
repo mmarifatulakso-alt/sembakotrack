@@ -81,11 +81,3 @@ Route::middleware(['auth', 'can:admin'])->prefix('admin')->name('admin.')->group
         return back()->with('status', "Akun pengguna {$nama} berhasil dihapus.");
     })->name('users.destroy');
 });
-
-Route::get('/setup-db', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', [
-        '--seed' => true,
-        '--force' => true
-    ]);
-    return 'Mantap! Database Aiven PostgreSQL berhasil disiapkan dan akun Admin telah dibuat.';
-});
