@@ -55,15 +55,11 @@ class AuthController extends Controller
 
     public function register(RegisterRequest $request): RedirectResponse
     {
-        // role TIDAK dari input user: selalu default 'user' dari database.
         $user = User::create($request->validated());
 
         $this->audit->log('auth.register', 'Registrasi akun baru', [], $user->id);
 
-        Auth::login($user);
-        $request->session()->regenerate();
-
-        return redirect()->route('watchlist.index')->with('status', 'Registrasi berhasil. Selamat datang!');
+        return redirect()->route('login')->with('status', 'Registrasi berhasil! Silakan masuk menggunakan akun baru Anda.');
     }
 
     public function logout(Request $request): RedirectResponse
